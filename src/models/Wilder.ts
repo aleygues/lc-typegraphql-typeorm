@@ -1,5 +1,5 @@
 import { Field, ID, InputType, ObjectType } from 'type-graphql';
-import { BaseEntity, Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, JoinColumn, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Skill } from './Skill';
 
 @ObjectType()
@@ -19,6 +19,7 @@ export class Wilder extends BaseEntity {
 
     @Field(() => [Skill])
     @ManyToMany(() => Skill, (skill) => skill.wilders)
+    @JoinTable()
     skills!: Skill[];
 }
 
